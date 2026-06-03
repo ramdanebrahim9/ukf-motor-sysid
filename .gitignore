@@ -1,0 +1,22 @@
+# MATLAB compiled
+*.mex*
+*.p
+
+# MATLAB live scripts
+*.mlx
+
+# Binary data
+*.bin
+*.mat
+
+# Simulink
+*.slx
+*.slxc
+*.slx.r*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
