@@ -3,11 +3,11 @@ function Q = get_Q(V)
     Q_table = [0.025, 0.025, 0.025, 0.025, 0.022, 0.033, 0.03, 0.033, 0.0255, 0.018] * 0.45;
     V_clamped = min(max(V, V_table(1)), V_table(end));
     q_i = interp1(V_table, Q_table, V_clamped, 'linear');
-    q_omega = 5;
-    q_d     = 0.01;   % ← YOUR RANDOM WALK TUNING KNOB
-                      %   small = slow drift, large = fast adaptation
 
-    Q = [q_omega^2,  0,      0;
-         0,          q_i^2,  0;
-         0,          0,      q_d^2];   % ← 3x3 now
+    q_d = 0.01;
+
+    Q = diag([1e-8,    % theta   — variance directly
+              1e-4,    % omega   — variance directly
+              q_i^2,   % i       — adaptive, squared std
+              q_d^2]); % d       — squared std
 end
